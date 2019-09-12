@@ -1,4 +1,5 @@
 // import { RestService } from '../../services/rest.service';
+import './home.scss';
 
 export class HomePage {
   constructor(restService) {
