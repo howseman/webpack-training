@@ -1,12 +1,25 @@
-import { RestService } from './services/rest.service';
+import Router from './lib/router';
+import routes from './config/routes';
 
-import { HomePage } from './pages/home/home';
+// import { RestService } from './services/rest.service';
+
+// import { HomePage } from './pages/home/home';
 
 function start() {
-  console.log('Hi from app.js!');
-  const restService = new RestService();
+  const router = new Router('main', routes);
+  const viewContainer = document.getElementById('app');
 
-  const homePage = new HomePage(restService);
+  console.log('pathname:', window.location.pathname); // Current path name
+  router.navigateTo(window.location.pathname);
+
+  // const requestedRoute = location.pathname;
+  // const route = router.getRouteDefinition(requestedRoute);
+
+  const routerLinks = Array.from(document.querySelectorAll('[route]'));
+  routerLinks.forEach(link => link.addEventListener('click', router.linkTo));
+
+  // const restService = new RestService();
+  // const homePage = new HomePage(restService);
 };
 
 export default start;

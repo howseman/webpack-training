@@ -1,9 +1,17 @@
-// @import "~bootstrap";
+@import "~normalize.css";
 
 $body-bg: #300030;
+$font-family-primary: Ubuntu;
+$font-size-primary: 14px;
+
+* {
+  box-sizing: border-box;
+}
 
 body {
   background-color: $body-bg;
+  font-family: $font-family-primary;
+  font-size: $font-size-primary;
 }
 
 h1 {
