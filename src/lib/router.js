@@ -31,7 +31,7 @@ export default class Router {
     const routeInfo = this.getRouteDefinition(requestedRoute);
     window.history.pushState({}, routeInfo.title, routeInfo.path);
     this.renderView(routeInfo);
-    this.addLinkHandler();
+    // this.addLinkHandler();
   }
 
   renderView(routeInfo) {
