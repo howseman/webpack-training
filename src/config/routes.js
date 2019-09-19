@@ -1,4 +1,5 @@
 import { HomePage } from '../pages/home/home';
+import { CharactersPage } from '../pages/characters/characters';
 
 const routes = [
   {
@@ -10,7 +11,7 @@ const routes = [
   {
     path: '/characters',
     title: 'Characters Page',
-    controller: '',
+    controller: CharactersPage,
     data: {},
     children: [
       {
