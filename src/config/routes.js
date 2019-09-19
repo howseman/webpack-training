@@ -3,7 +3,7 @@ import { HomePage } from '../pages/home/home';
 const routes = [
   {
     path: '/',
-    title: 'Home',
+    title: 'Rick and Morty : Home Page',
     controller: HomePage,
     data: {},
   },
@@ -25,9 +25,7 @@ const routes = [
     path: '**',
     controller: 'not-found-page',
     title: '404 Not Found!',
-    data: {
-      title: 'Not found'
-    },
+    data: {},
   },
 ];
 

@@ -10,14 +10,10 @@ export class HomePage {
     //   console.log('response:', res);
     // });
 
-    return this.render({ title: 'HOME'});
+    this.data = { title: 'HOME'};
   }
 
-  render(props) {
-    return template(props);
+  render() {
+    return template(this.data);
   }
 }
-
-// VIEW Side
-// const commentsForm = document.getElementById('comments-form');
-// const formData = new FormData(commentsForm);

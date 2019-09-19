@@ -1,7 +1,14 @@
 export default class Router {
-  constructor(name, routes) {
-    this.name = name;
+
+  /**
+   * 
+   * @param {string} outlet Outlet name
+   * @param {Array<Route>} routes Array with routes definition
+   */
+  constructor(outlet, routes) {
+    this.outlet = outlet;
     this.routes = routes;
+    this.viewContainer = document.getElementById(outlet);
   }
 
   getRouteDefinition(requestedRoute) {
@@ -22,11 +29,18 @@ export default class Router {
 
   navigateTo(requestedRoute) {
     const routeInfo = this.getRouteDefinition(requestedRoute);
-
-    console.log('requestedRoute', requestedRoute);
-    console.log('routeInfo:', routeInfo);
-
     window.history.pushState({}, routeInfo.title, routeInfo.path);
-    viewContainer.innerHTML = new routeInfo.controller(); // TODO: Move this outside
+    this.renderView(routeInfo);
+    this.addLinkHandler();
+  }
+
+  renderView(routeInfo) {
+    const view = new routeInfo['controller'];
+    this.viewContainer.innerHTML = view.render();
+  }
+
+  addLinkHandler() {
+    const routerLinks = Array.from(document.querySelectorAll('[route]'));
+    routerLinks.forEach(link => link.addEventListener('click', this.linkTo, false));
   }
 }
