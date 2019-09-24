@@ -1,17 +1,19 @@
-// import { RestService } from '../../services/rest.service';
+import template from './home.hbs';
+import './home.scss';
 
 export class HomePage {
-  constructor(restService) {
-    this.restService = restService;
+  constructor(/*restService*/) { // TODO: Make some dependency injection
+    // this.restService = restService;
     console.log('Hi from home.js!');
 
-    // this.restService = new RestService();
-    this.restService.getRandomCharacters().then((res) => {
-      console.log('response:', res);
-    });
+    // this.restService.getRandomCharacters().then((res) => {
+    //   console.log('response:', res);
+    // });
+
+    this.data = { title: 'HOME'};
+  }
+
+  render() {
+    return template(this.data);
   }
 }
-
-// VIEW Side
-// const commentsForm = document.getElementById('comments-form');
-// const formData = new FormData(commentsForm);

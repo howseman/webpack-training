@@ -1,12 +1,9 @@
-import { RestService } from './services/rest.service';
-
-import { HomePage } from './pages/home/home';
+import Router from './lib/router';
+import routes from './config/routes';
 
 function start() {
-  console.log('Hi from app.js!');
-  const restService = new RestService();
-
-  const homePage = new HomePage(restService);
+  const router = new Router('app', routes);
+  router.navigateTo(window.location.pathname);
 };
 
 export default start;
