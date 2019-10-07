@@ -3,8 +3,6 @@ import './characters.scss';
 
 export class CharactersPage {
   constructor() {
-    console.log('Hi from characters.js!');
-
     this.data = { title: 'CHARACTERS'};
   }
 

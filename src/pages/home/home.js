@@ -1,11 +1,13 @@
+import { Controller } from '../../lib/controller.class';
+
 import template from './home.hbs';
 import './home.scss';
 
-export class HomePage {
+export class HomePage extends Controller {
   constructor(/*restService*/) { // TODO: Make some dependency injection
-    // this.restService = restService;
-    console.log('Hi from home.js!');
+    super();
 
+    // this.restService = restService;
     // this.restService.getRandomCharacters().then((res) => {
     //   console.log('response:', res);
     // });

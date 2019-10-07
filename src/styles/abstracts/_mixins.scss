@@ -1,0 +1,4 @@
+@mixin font-size($px-size) {
+  font-size: $px-size; // fallback in px
+  font-size: px-to-rem($px-size);
+}

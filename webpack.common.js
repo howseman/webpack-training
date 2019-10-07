@@ -21,7 +21,9 @@ module.exports = {
         test: /\.hbs$/i,
         use: [{
           loader: 'handlebars-loader',
-          // options: {helperDirs: path.resolve(__dirname, "./js/helpers")}
+          options: {
+            helperDirs: path.resolve(__dirname, "./components")
+          }
         }],
       },
       {

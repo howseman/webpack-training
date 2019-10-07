@@ -1,0 +1,12 @@
+@import "./functions";
+
+// Base color palette
+$base-palette: (
+  primary: #300030,
+  secondary: #cdcdcd,
+  danger: red
+);
+
+// Text settings
+$font-family-primary: Ubuntu;
+$font-size-base: px-to-rem(14) !default;

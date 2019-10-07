@@ -1,0 +1,15 @@
+@function color($palette, $color) {
+  @if map-has-key($palette, $color) {
+    @return map-get($palette, $color);
+  }
+
+  @warn "Unknown color `#{$color}` in palette";
+  @return null;
+}
+
+@function px-to-rem($px) {
+  $remSize: $px / 16;
+  @return #{$remSize}rem;
+}
+
+

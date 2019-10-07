@@ -1,9 +1,8 @@
-import Router from './lib/router';
-import routes from './config/routes';
+import router from './config/routes';
 
 function start() {
-  const router = new Router('app', routes);
-  router.navigateTo(window.location.pathname);
+  router.resolve();
+  router.navigate(window.location.pathname);
 };
 
 export default start;

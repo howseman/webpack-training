@@ -29,6 +29,6 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
-    "bootstrap": "^4.3.1"
+    "navigo": "^7.1.2"
   }
 }

@@ -1,0 +1,17 @@
+// ----------------------------------------------------------
+// This file contains the main global styles
+// ----------------------------------------------------------
+
+body {
+  background-color: color($base-palette, primary);
+  font-family: $font-family-primary;
+  font-size: $font-size-base;
+}
+
+// div, header, footer {
+//   box-sizing: border-box;
+// }
+
+.box {
+  box-sizing: border-box;
+}
