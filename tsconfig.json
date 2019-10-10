@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "noImplicitAny": true,
+    "module": "amd",
+    "target": "es6",
+    "experimentalDecorators": true,
+    "allowJs": true
+  }
+}
+
+/*
+    "jsx": "react",
+    "sourceMap": true,
+*/
