@@ -1,6 +1,6 @@
 import { Controller } from '../../lib/controller.class';
 
-import template from './home.hbs';
+// import template from './home.html';
 import './home.scss';
 
 export class HomePage extends Controller {
@@ -16,6 +16,10 @@ export class HomePage extends Controller {
   }
 
   render() {
-    return template(this.data);
+    return `
+      <div class="page">
+        <p>The ${this.data.title} page works!</p>
+      </div>
+    `;
   }
 }

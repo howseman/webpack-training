@@ -3,14 +3,11 @@
 // ----------------------------------------------------------
 
 body {
-  background-color: color($base-palette, primary);
+  background-color: color($base-palette, white);
   font-family: $font-family-primary;
   font-size: $font-size-base;
+  margin: 0;
 }
-
-// div, header, footer {
-//   box-sizing: border-box;
-// }
 
 .box {
   box-sizing: border-box;

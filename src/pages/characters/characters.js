@@ -1,4 +1,4 @@
-import template from './characters.hbs';
+// import template from './characters.html';
 import './characters.scss';
 
 export class CharactersPage {
@@ -7,6 +7,10 @@ export class CharactersPage {
   }
 
   render() {
-    return template(this.data);
+    return `
+      <div class="characters-page">
+        <p>The ${this.data.title} page works!</p>
+      </div>
+    `;
   }
 }

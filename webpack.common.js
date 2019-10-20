@@ -24,15 +24,6 @@ module.exports = {
         include: path.resolve(__dirname, 'src'),
       },
       {
-        test: /\.hbs$/i,
-        use: [{
-          loader: 'handlebars-loader',
-          options: {
-            helperDirs: path.resolve(__dirname, "./components")
-          }
-        }],
-      },
-      {
         test: /\.(sc|sa|c)ss$/i,
         use: [
           // 'style-loader', // 3. Inject styles into DOM
@@ -70,11 +61,11 @@ module.exports = {
   plugins: [
     new MiniCssExtractPlugin({
       filename: '[name].[contentHash].css',
-      chunkFilename: '[id].css'
+      // chunkFilename: '[id].css'
     }),
     new HtmlWebpackPlugin({
       title: 'Webpack Training',
-      template: './src/index.hbs',
+      template: './src/index.html',
       filename: 'index.html',
     }),
     new CleanWebpackPlugin(), // It cleans all files in dist directory when build

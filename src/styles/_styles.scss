@@ -1,19 +1,25 @@
-.header {
+.app-header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
 
-  nav {
+  .top-nav {
+    background-color: color($base-palette, primary);
     display: flex;
     height: 50px;
     padding: 0;
-    
+
     .nav-item {
       flex-grow: 1;
 
       color: white;
       cursor: pointer;
+      line-height: 2rem;
+      min-width: 100px;
+      padding: 10px;
       text-align: center;
       text-decoration: none;
-      padding: 10px;
-      min-width: 100px;
       vertical-align: middle; // Really?
 
       &.active {
