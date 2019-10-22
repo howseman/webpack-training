@@ -2,6 +2,8 @@ import environment from '../config/dev.conf'; // TODO: Make a "proxy" to get the
 import { HttpService } from '../utils/http.service';
 
 export class RestService {
+  http: HttpService;
+
   constructor() {
     this.http = new HttpService();
   }

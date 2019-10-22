@@ -9,6 +9,71 @@ body {
   margin: 0;
 }
 
+// ----------------------------------------------------------
+// Custom global styles
+// ----------------------------------------------------------
+$header-height: 50px;
+$footer-height: 30px;
+
+#app {
+  margin: $header-height 0 $footer-height;
+}
+
+.app-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+
+  .top-nav {
+    background-color: color($base-palette, primary);
+    display: flex;
+    height: $header-height;
+    padding: 0;
+
+    .nav-item {
+      flex-grow: 1;
+
+      color: white;
+      cursor: pointer;
+      line-height: 2rem;
+      min-width: 100px;
+      padding: 10px;
+      text-align: center;
+      text-decoration: none;
+      vertical-align: middle; // Really?
+
+      &.active {
+        background-color: blue;
+      }
+    }
+  }
+}
+
+.page {
+  height: calc(100vh - #{$header-height} - #{$footer-height});
+  margin: 0;
+}
+
+.app-footer {
+  background-color: color($base-palette, primary);
+  color: white;
+  font-size: px-to-rem(10);
+  height: $footer-height;
+  line-height: $footer-height;
+  vertical-align: middle;
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+}
+
+// ----------------------------------------------------------
+// Custom global styles
+// ----------------------------------------------------------
 .box {
   box-sizing: border-box;
+}
+
+.text-center {
+  text-align: center;
 }

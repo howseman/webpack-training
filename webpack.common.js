@@ -25,6 +25,7 @@ module.exports = {
       },
       {
         test: /\.(sc|sa|c)ss$/i,
+        exclude: /node_modules/,
         use: [
           // 'style-loader', // 3. Inject styles into DOM
           { // This plugin extracts the css to a separate file each
@@ -44,6 +45,7 @@ module.exports = {
       },
       {
         test: /(jpg|jpeg|png|gif)$/i,
+        exclude: /node_modules/,
         use: [{
           loader: 'file-loader',
           options: {
@@ -61,7 +63,7 @@ module.exports = {
   plugins: [
     new MiniCssExtractPlugin({
       filename: '[name].[contentHash].css',
-      // chunkFilename: '[id].css'
+      chunkFilename: '[id].css'
     }),
     new HtmlWebpackPlugin({
       title: 'Webpack Training',

@@ -1,8 +1,7 @@
-import router from './config/routes';
+import router from './config/routing';
 import './styles/main.scss';
 
 function start() {
-  router.resolve();
   router.navigate(window.location.pathname);
 };
 

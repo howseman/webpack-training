@@ -1,4 +1,4 @@
-import Navigo from 'navigo';
+import * as Navigo from 'navigo';
 
 import { render } from '../lib/view-renderer';
 import { HomePage } from '../pages/home/home';
@@ -11,8 +11,9 @@ router.on({
   '/characters/details/:id': () => render(CharactersPage, 'app'),
   // '*': () => {console.log('404: NOT FOUND!')}
 });
-router.notFound((query) => {
+router.notFound((query: any) => {
   console.log('Not Found query data:', query);
 });
+router.resolve();
 
 export default router;
