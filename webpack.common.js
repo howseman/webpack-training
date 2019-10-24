@@ -8,7 +8,7 @@ module.exports = {
   // devtool: 'none', // Choose a style of source mapping to enhance the debugging process
   //                  // https://webpack.js.org/configuration/devtool
   entry: { // Path to entry file(s)
-    vendors: './src/vendors.js',
+    // vendors: './src/vendors.js',
     main: './src/index.ts',
   },
   output: {

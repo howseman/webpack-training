@@ -19,9 +19,8 @@ export class HomePage implements IPage {
     return `
       <div class="page page-home">
         <p>The ${this.data.title} page works!</p>
+        <app-card></app-card>
       </div>
     `;
   }
 }
-
-// customElements.define("custom-input", CustomInput);
