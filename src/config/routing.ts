@@ -14,6 +14,5 @@ router.on({
 router.notFound((query: any) => {
   console.log('Not Found query data:', query);
 });
-router.resolve();
 
 export default router;

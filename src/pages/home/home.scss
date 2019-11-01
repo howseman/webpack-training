@@ -1,4 +1,19 @@
 .page-home {
-  background-color: aquamarine;
-  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: calc(100vh - 80px);
+
+  .cards {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .btn--float-right {
+    display: block;
+    margin: 0 auto;
+  }
+  .options {
+    padding: 15px;
+  }
 }

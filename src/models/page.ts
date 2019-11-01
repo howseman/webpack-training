@@ -1,5 +1,6 @@
 export interface IPage {
   data?: any;
-  preRender: Function;
+  preRender?: Function;
   render: Function;
+  setEventHandlers?: Function;
 }
