@@ -1,24 +1,19 @@
 import router from './config/routing';
+import { AppContext } from './lib/app-context.class';
 import { RestService } from './services/rest.service';
 import { CardComponent } from './components/card/card.component';
 
 import './styles/main.scss';
 
 function start() {
-  window['appContext'] = (function() {
-    function appContext() {
-      this.services = {};
-      this.services['restService'] = new RestService;
+  const services = new Map([
+    ['restService', RestService]
+  ]);
+  const components = [
+    CardComponent
+  ];
 
-      this.components = [new CardComponent];
-
-      this.getService = function(serviceName) {
-        return this.services[serviceName];
-      };
-    }
-
-    return new appContext;
-  })();
+  window['appContext'] = new AppContext(services, components);
 
   router.resolve();
   router.navigate(window.location.pathname);

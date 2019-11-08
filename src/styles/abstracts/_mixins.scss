@@ -2,3 +2,12 @@
   font-size: $px-size; // fallback in px
   font-size: px-to-rem($px-size);
 }
+
+@mixin max-page-width() {
+  @media(max-width: map-get($grid-breakpoints, md)) {
+    max-width: 100%;
+  }
+  @media(min-width: map-get($grid-breakpoints, lg)) {
+    max-width: 1024px;
+  }
+}

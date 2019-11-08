@@ -6,9 +6,11 @@ export interface ICustomElementConfig {
 }
 
 export interface ICustomElement {
+  shRoot?: ShadowRoot;
+  template: string;
+  attributeChangedCallback?(name: string, oldValue: any, newValue: any): void;
   connectedCallback?: Function;
   disconnectedCallback?: Function;
-  attributeChangedCallback?(name: string, oldValue: any, newValue: any): void;
   adoptedCallback?: Function;
 
   componentWillMount?: Function;
@@ -22,30 +24,41 @@ export interface ICustomElement {
  * @param config object with decorator required params
  */
 export function CustomElement(config: ICustomElementConfig) {
-  // console.log('outer factory');
-
+  
   return function(incomingClassConstructor) {
-    // console.log('inner factory');
     let { selector, template, style, useShadow } = config;
 
     if (!selector || selector.indexOf('-') === -1) {
       throw new Error('You need at least a single dash in the custom element name!');
     }
 
-    // if (!template) {
-    //   throw new Error('You need to pass a template for the element');
-    // }
-
-    const templateElement = document.createElement('template');
-
-    if (style) {
-      template = `<style>${style}</style>${template}`;
-    }
-
-    templateElement.innerHTML = template;
-
     const connectedCallback = incomingClassConstructor.prototype.connectedCallback || function () {};
     const disconnectedCallback = incomingClassConstructor.prototype.disconnectedCallback || function () {};
+
+    incomingClassConstructor.prototype.render = function () {
+      let clone: DocumentFragment;
+      const $templateElement = document.createElement('template');
+
+      $templateElement.innerHTML = this.template;
+      clone = document.importNode($templateElement.content, true);
+
+      if (style) {
+        const _style = document.createElement('style');
+        _style.textContent = style;
+
+        if (useShadow) {
+          this.shRoot.appendChild(_style);
+        } else {
+          this.appendChild(_style);
+        }
+      }
+
+      if (useShadow) {
+        this.shRoot.appendChild(clone);
+      } else {
+        this.appendChild(clone);
+      }
+    };
 
     incomingClassConstructor.prototype.connectedCallback = function () {
       if (this.componentWillMount) {
@@ -53,6 +66,7 @@ export function CustomElement(config: ICustomElementConfig) {
       }
 
       connectedCallback.call(this);
+      this.render();
 
       if (this.componentDidMount) {
         this.componentDidMount();

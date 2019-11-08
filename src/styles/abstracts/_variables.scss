@@ -11,3 +11,11 @@ $base-palette: (
 // Text settings
 $font-family-primary: Ubuntu;
 $font-size-base: px-to-rem(14) !default;
+
+// Grid
+$grid-breakpoints: (
+  xs: 0,
+  sm: 330px,
+  md: 660px,
+  lg: 990px,
+);
