@@ -28,11 +28,6 @@ export class CharactersPage implements IPage {
     return this.getCharacters();
   }
 
-  showCharacterDetailPage(event, characterId) {
-    console.log('char-id:', arguments);
-    router.navigate(`characters/${characterId}`);
-  }
-
   render() {
     const cards = this.data.characters.map(
       (character: ICharacter) => `<app-card character-name="${character.name}" img-src="${character.image}" character-id="${character.id}"></app-card>`
@@ -49,10 +44,25 @@ export class CharactersPage implements IPage {
 
   setEventHandlers() {
     this.setScrollHandler();
-    // Add here more handlers
+    this.setCardClickHandlers();
   }
 
-  setScrollHandler() {
+  private setCardClickHandlers() {
+    const $cards = document.querySelectorAll('app-card');
+    $cards.forEach((cardNode) => {
+      cardNode.addEventListener('click', this.cardClickHandler);
+    });
+  }
+
+  private cardClickHandler(e: Event) {
+    const characterId = e.target['attributes'].getNamedItem('character-id').value;
+
+    if (characterId) {
+      router.navigate(`characters/${characterId}`);
+    }
+  }
+
+  private setScrollHandler() {
     const $cards = document.querySelectorAll('app-card');
 
     if (this.numberOfCurrentCharacterPage >= this.numberOfCharacterPages) {
@@ -66,10 +76,11 @@ export class CharactersPage implements IPage {
         if (entries[0].isIntersecting) {
           console.log('***Calling for data...');
           this.scrollObserver.unobserve(this.$lastCard);
-          this.getCharacters().then(() => {
-            this.injectCards();
-            this.setScrollHandler();
-          });
+          this.getCharacters()
+            .then(() => {
+              this.injectCards();
+              this.setScrollHandler();
+            });
         }
       },
       {
@@ -81,35 +92,38 @@ export class CharactersPage implements IPage {
     this.scrollObserver.observe(this.$lastCard);
   }
 
-  getCharacters() {
+  private getCharacters(): Promise<void> {
     this.numberOfCurrentCharacterPage++;
-    return this.restService.getCharactersByPageNumber(this.numberOfCurrentCharacterPage).then(
-      (res) => {
-        this.numberOfCharacterPages = res.info.pages;
-        this.data.characters.splice(
-          this.data.characters.length,
-          0,
-          ...res.results.map((item) => ({
-              name: item.name,
-              image: item.image,
-              id: item.id,
-            }))
-        );
-      },
-      () => {
+    return this.restService.getCharactersByPageNumber(this.numberOfCurrentCharacterPage)
+      .then(
+        (res) => {
+          this.numberOfCharacterPages = res.info.pages;
+          this.data.characters.splice(
+            this.data.characters.length,
+            0,
+            ...res.results.map((item) => ({
+                name: item.name,
+                image: item.image,
+                id: item.id,
+              }))
+          );
+        },
+        () => {
+          this.numberOfCurrentCharacterPage--;
+        }
+      )
+      .catch(() => {
         this.numberOfCurrentCharacterPage--;
-      }
-    ).catch(() => {
-      this.numberOfCurrentCharacterPage--;
-    });
+      });
   }
 
-  injectCards() {
+  private injectCards() {
     const mapCharactersFrom = this.itemsPerPage * (this.numberOfCurrentCharacterPage -1);
     const cards = this.data.characters.slice(mapCharactersFrom).map(
       (character: ICharacter) => `<app-card character-name="${character.name}" img-src="${character.image}" character-id="${character.id}"></app-card>`
     ).join('');
 
     document.querySelector('.cards').insertAdjacentHTML('beforeend', cards);
+    this.setCardClickHandlers();
   }
 }

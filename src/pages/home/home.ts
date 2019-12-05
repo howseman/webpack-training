@@ -42,5 +42,21 @@ export class HomePage implements IPage {
     document.getElementById('btnRedirect').addEventListener('click', () => {
       router.navigate('characters');
     });
+    this.setCardClickHandlers();
+  }
+
+  private setCardClickHandlers() {
+    const $cards = document.querySelectorAll('app-card');
+    $cards.forEach((cardNode) => {
+      cardNode.addEventListener('click', this.cardClickHandler);
+    });
+  }
+
+  private cardClickHandler(e: Event) {
+    const characterId = e.target['attributes'].getNamedItem('character-id').value;
+
+    if (characterId) {
+      router.navigate(`characters/${characterId}`);
+    }
   }
 }

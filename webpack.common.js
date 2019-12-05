@@ -1,7 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   // mode: 'development', // https://webpack.js.org/configuration/mode/
@@ -27,18 +26,7 @@ module.exports = {
         test: /\.(sc|sa|c)ss$/i,
         exclude: /node_modules/,
         use: [
-          // 'style-loader', // 3. Inject styles into DOM
-          { // This plugin extracts the css to a separate file each
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              publicPath: (resourcePath, context) => {
-                // publicPath is the relative path of the resource to the context
-                // e.g. for ./css/admin/main.css the publicPath will be ../../
-                // while for ./css/main.css the publicPath will be ../
-                return path.relative(path.dirname(resourcePath), context) + '/';
-              },
-            },
-          },
+          'style-loader', // 3. Inject styles into DOM
           'css-loader',   // 2. Turn CSS into CommonJS
           'sass-loader',  // 1. Turn SASS into CSS
         ],
@@ -61,10 +49,6 @@ module.exports = {
     extensions: [ '.tsx', '.ts', '.js' ],
   },
   plugins: [
-    new MiniCssExtractPlugin({
-      filename: '[name].[contentHash].css',
-      chunkFilename: '[id].css'
-    }),
     new HtmlWebpackPlugin({
       title: 'Webpack Training',
       template: './src/index.html',

@@ -5,5 +5,9 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 }

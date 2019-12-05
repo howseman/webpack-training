@@ -46,6 +46,12 @@ import './card.component.scss';
       text-transform: uppercase;
       width: 100%;
     }
+    .app-card__text {
+      color: black;
+      background-color: white;
+      padding: 15px;
+      text-align: justify;
+    }
   `,
 })
 export class CardComponent extends HTMLElement implements ICustomElement {
@@ -70,6 +76,11 @@ export class CardComponent extends HTMLElement implements ICustomElement {
   }
 
   get template() {
+    let descriptionContent = '';
+    if (this.getAttribute('character-description')) {
+      descriptionContent = `<div class="app-card__text">${this.getAttribute('character-description')}</div>`;
+    }
+
     return `
       <div class="app-card">
         <img src="${this.getAttribute('img-src')}"></img>
@@ -77,6 +88,7 @@ export class CardComponent extends HTMLElement implements ICustomElement {
           <div class="app-card__title">
             <h3 class="app-card__title-text">${this.getAttribute('character-name')}</h3>
           </div>
+          ${(descriptionContent) ? descriptionContent : ''}
         </div>
       </div>
     `;

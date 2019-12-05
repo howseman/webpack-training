@@ -13,7 +13,6 @@ export class RestService {
 
   /**
    * Get the specified number of random characters from BE endpoint
-   * 
    * @param howMany number of characters to fetch
    */
   getRandomCharacters(howMany: number) {
@@ -23,10 +22,17 @@ export class RestService {
 
   /**
    * Get a collection of characters from BE endpoint according to number of page
-   * 
    * @param page number of characters page to fetch
    */
   getCharactersByPageNumber(page: number) {
     return this.http.request('GET', `${environment.apiUrl}character/?page=${page}`);
+  }
+
+  /**
+   * Get data for a specific character
+   * @param characterId character ID to be data requested
+   */
+  getCharacterById(characterId) {
+    return this.http.request('GET', `${environment.apiUrl}character/${characterId}`);
   }
 }
