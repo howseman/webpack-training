@@ -6,10 +6,8 @@
     "target": "es6",
     "experimentalDecorators": true,
     "allowJs": true
-  }
+  },
+  "include": [
+    "src/**/*"
+  ],
 }
-
-/*
-    "jsx": "react",
-    "sourceMap": true,
-*/
