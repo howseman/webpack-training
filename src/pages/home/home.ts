@@ -15,15 +15,13 @@ export class HomePage implements IPage {
 
   preRender() {
     return this.restService.getRandomCharacters(3)
-      .then((res) => {
-        this.data = { characters: res };
-      })
+      .then(res => this.data = { characters: res })
       .catch(err => console.error(err));
   }
 
   render() {
     const cards = this.data.characters.map(
-      (character: { name: string, image: string, id: number }) => `<app-card character-name="${character.name}" img-src="${character.image}" character-id="${character.id}"></app-card>`
+      (character: { name: string, image: string, id: number }) => `<app-card character-name="${character.name}" img-src="${character.image}" character-id="${character.id}"></app-card>`,
     ).join('');
 
     return `
@@ -47,9 +45,7 @@ export class HomePage implements IPage {
 
   private setCardClickHandlers() {
     const $cards = document.querySelectorAll('app-card');
-    $cards.forEach((cardNode) => {
-      cardNode.addEventListener('click', this.cardClickHandler);
-    });
+    $cards.forEach(cardNode => cardNode.addEventListener('click', this.cardClickHandler));
   }
 
   private cardClickHandler(e: Event) {

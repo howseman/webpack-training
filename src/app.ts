@@ -12,7 +12,7 @@ function start() {
     ['restService', RestService],
   ]);
   const components = [
-    CardComponent
+    CardComponent,
   ];
 
   window['appContext'] = new AppContext(services, components);

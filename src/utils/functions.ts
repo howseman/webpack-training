@@ -3,7 +3,7 @@ export function getRandomNumber(max: number) {
 }
 
 export function getRandomNumbersArray(max: number, howMany: number) {
-  let randomNumbersArray = [];
+  const randomNumbersArray = [];
   for (let i = 0; i < howMany; i++) {
     randomNumbersArray.push(getRandomNumber(max));
   }

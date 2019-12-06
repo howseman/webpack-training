@@ -8,7 +8,7 @@ import { CharacterDetailsPage } from '../pages/characters/details/details';
 const rootPath = null;
 const router = new Navigo(rootPath, false);
 router.on({
-  '/characters/:id': (params) => {
+  '/characters/:id': params => {
     const routingData = window['appContext'].getService('routingDataService');
     routingData.params = params;
     render(CharacterDetailsPage, 'app');

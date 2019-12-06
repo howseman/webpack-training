@@ -1,6 +1,6 @@
 export interface IPage {
   data?: any;
-  preRender?: Function;
-  render: Function;
-  setEventHandlers?: Function;
+  preRender?(): Promise<any>;
+  render(): string;
+  setEventHandlers?(): void;
 }

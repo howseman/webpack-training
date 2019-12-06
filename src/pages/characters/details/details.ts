@@ -38,11 +38,7 @@ export class CharacterDetailsPage implements IPage {
 
   getCharacter(characterId) {
     return this.restService.getCharacterById(characterId)
-      .then((res) => {
-        this.data.character = res;
-      })
-      .catch(() => {
-        this.data.character = null;
-      });
+      .then(res => this.data.character = res)
+      .catch(() => this.data.character = null);
   }
 }

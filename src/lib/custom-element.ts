@@ -9,14 +9,14 @@ export interface ICustomElement {
   shRoot?: ShadowRoot;
   template: string;
   attributeChangedCallback?(name: string, oldValue: any, newValue: any): void;
-  connectedCallback?: Function;
-  disconnectedCallback?: Function;
-  adoptedCallback?: Function;
+  connectedCallback?(): void;
+  disconnectedCallback?(): void;
+  adoptedCallback?(): void;
 
-  componentWillMount?: Function;
-  componentDidMount?: Function;
-  componentWillUnmount?: Function;
-  componentDidUnmount?: Function;
+  componentWillMount?(): void;
+  componentDidMount?(): void;
+  componentWillUnmount?(): void;
+  componentDidUnmount?(): void;
 }
 
 /**
@@ -24,18 +24,18 @@ export interface ICustomElement {
  * @param config object with decorator required params
  */
 export function CustomElement(config: ICustomElementConfig) {
-  
+
   return function(incomingClassConstructor) {
-    let { selector, template, style, useShadow } = config;
+    const { selector, template, style, useShadow } = config;
 
     if (!selector || selector.indexOf('-') === -1) {
       throw new Error('You need at least a single dash in the custom element name!');
     }
 
-    const connectedCallback = incomingClassConstructor.prototype.connectedCallback || function () {};
-    const disconnectedCallback = incomingClassConstructor.prototype.disconnectedCallback || function () {};
+    const connectedCallback = incomingClassConstructor.prototype.connectedCallback || new Function();
+    const disconnectedCallback = incomingClassConstructor.prototype.disconnectedCallback || new Function();
 
-    incomingClassConstructor.prototype.render = function () {
+    incomingClassConstructor.prototype.render = function() {
       let clone: DocumentFragment;
       const $templateElement = document.createElement('template');
 
@@ -60,7 +60,7 @@ export function CustomElement(config: ICustomElementConfig) {
       }
     };
 
-    incomingClassConstructor.prototype.connectedCallback = function () {
+    incomingClassConstructor.prototype.connectedCallback = function() {
       if (this.componentWillMount) {
         this.componentWillMount();
       }
@@ -86,5 +86,5 @@ export function CustomElement(config: ICustomElementConfig) {
     };
 
     window.customElements.define(selector, incomingClassConstructor);
-  }
+  };
 }

@@ -30,7 +30,7 @@ export class CharactersPage implements IPage {
 
   render() {
     const cards = this.data.characters.map(
-      (character: ICharacter) => `<app-card character-name="${character.name}" img-src="${character.image}" character-id="${character.id}"></app-card>`
+      (character: ICharacter) => `<app-card character-name="${character.name}" img-src="${character.image}" character-id="${character.id}"></app-card>`,
     ).join('');
 
     return `
@@ -49,7 +49,7 @@ export class CharactersPage implements IPage {
 
   private setCardClickHandlers() {
     const $cards = document.querySelectorAll('app-card');
-    $cards.forEach((cardNode) => {
+    $cards.forEach(cardNode => {
       cardNode.addEventListener('click', this.cardClickHandler);
     });
   }
@@ -86,8 +86,8 @@ export class CharactersPage implements IPage {
       {
         root: null,
         rootMargin: '0px 0px 0px 0px',
-        threshold: 0
-      }
+        threshold: 0,
+      },
     );
     this.scrollObserver.observe(this.$lastCard);
   }
@@ -96,21 +96,21 @@ export class CharactersPage implements IPage {
     this.numberOfCurrentCharacterPage++;
     return this.restService.getCharactersByPageNumber(this.numberOfCurrentCharacterPage)
       .then(
-        (res) => {
+        res => {
           this.numberOfCharacterPages = res.info.pages;
           this.data.characters.splice(
             this.data.characters.length,
             0,
-            ...res.results.map((item) => ({
+            ...res.results.map(item => ({
                 name: item.name,
                 image: item.image,
                 id: item.id,
-              }))
+              })),
           );
         },
         () => {
           this.numberOfCurrentCharacterPage--;
-        }
+        },
       )
       .catch(() => {
         this.numberOfCurrentCharacterPage--;
@@ -118,9 +118,9 @@ export class CharactersPage implements IPage {
   }
 
   private injectCards() {
-    const mapCharactersFrom = this.itemsPerPage * (this.numberOfCurrentCharacterPage -1);
+    const mapCharactersFrom = this.itemsPerPage * (this.numberOfCurrentCharacterPage - 1);
     const cards = this.data.characters.slice(mapCharactersFrom).map(
-      (character: ICharacter) => `<app-card character-name="${character.name}" img-src="${character.image}" character-id="${character.id}"></app-card>`
+      (character: ICharacter) => `<app-card character-name="${character.name}" img-src="${character.image}" character-id="${character.id}"></app-card>`,
     ).join('');
 
     document.querySelector('.cards').insertAdjacentHTML('beforeend', cards);

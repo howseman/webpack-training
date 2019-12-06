@@ -1,5 +1,5 @@
 export function render(Controller, outlet) {
-  const controller = new Controller;
+  const controller = new Controller();
 
   // TODO: Verify if preRender is a Promise
   if (typeof controller.preRender === 'function') {
