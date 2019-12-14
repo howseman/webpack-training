@@ -1,0 +1,104 @@
+// ----------------------------------------------------------
+// This file contains the main global styles
+// ----------------------------------------------------------
+
+body {
+  background-color: color($base-palette, white);
+  font-family: $font-family-primary;
+  font-size: $font-size-base;
+  margin: 0;
+}
+
+// ----------------------------------------------------------
+// Custom global styles
+// ----------------------------------------------------------
+$header-height: 50px;
+$footer-height: 30px;
+
+#app {
+  position: absolute;
+  top: $header-height;
+  left: 0;
+  right: 0;
+}
+
+.app-header {
+  background-color: color($base-palette, primary);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+
+  .top-nav {
+    box-sizing: border-box;
+    display: flex;
+    height: $header-height;
+    padding: 0 15px;
+    margin: 0 auto;
+    @include max-page-width();
+
+    .nav-item {
+      flex-grow: 0;
+      color: white;
+      cursor: pointer;
+      padding: 17px 20px 10px;;
+      text-align: center;
+      text-decoration: none;
+
+      &.active {
+        background-color: blue;
+      }
+      &:hover {
+        background-color: brown;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+      }
+    }
+  }
+}
+
+.app-page {
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 0 15px 15px;
+  @include max-page-width();
+}
+
+.app-footer {
+  background-color: color($base-palette, primary);
+  color: white;
+  font-size: px-to-rem(10);
+  height: $footer-height;
+  line-height: $footer-height;
+  vertical-align: middle;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.btn {
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  font-weight: lighter;
+  height: 36px;
+  padding: 4px 15px 5px;
+  outline: none;
+
+  &--primary {
+    background-color: color($base-palette, primary);
+  }
+}
+
+// ----------------------------------------------------------
+// Custom global styles
+// ----------------------------------------------------------
+.box {
+  box-sizing: border-box;
+}
+
+.text-center {
+  text-align: center;
+}

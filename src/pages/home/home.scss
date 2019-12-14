@@ -1,4 +1,32 @@
-.home-page {
-  background-color: aquamarine;
-  height: 50%;
+@import '../../styles/abstracts/variables';
+
+.page-home {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  min-height: calc(100vh - 80px);
+  @media (min-width: map-get($grid-breakpoints, md)) {
+    justify-content: center;    
+  }
+
+  .cards {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .btn--float-right {
+    display: block;
+    margin: 0 auto;
+  }
+
+  .options {
+    padding: 15px;
+    margin: 0 auto 15px;
+  }
 }

@@ -1,16 +1,17 @@
 export class HttpService {
+  requestHeaders = null;
+
   constructor() {
     // this.requestHeaders = new Headers({
     //   'Content-Type': 'application/json'
     // });
-    this.requestHeaders = null;
   }
 
   request(method, url, payload = null, headers = this.requestHeaders) {
     const requestOptions = {
       method,
       body: payload, // could use formData object
-      headers
+      headers,
     };
 
     return fetch(url/*, requestOptions*/)
